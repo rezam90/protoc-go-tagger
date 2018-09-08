@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"path/filepath"
 	"strings"
@@ -25,9 +26,13 @@ func main() {
 	}
 
 	matches, err := filepath.Glob(inputFile)
+	fmt.Println(matches)
+
 	if err != nil {
 		log.Fatal("can't read files", err.Error())
 	}
+
+	fmt.Println(matches)
 
 	for _, filePath := range matches {
 		areas, err := parseFile(filePath, xxxSkipSlice)
