@@ -17,12 +17,12 @@ func TestTagFromComment(t *testing.T) {
 		comment string
 		tag     string
 	}{
-		{comment: `//@inject_tag: valid:"abc"`, tag: `valid:"abc"`},
-		{comment: `//   @inject_tag: valid:"abcd"`, tag: `valid:"abcd"`},
-		{comment: `// @inject_tag:      valid:"xyz"`, tag: `valid:"xyz"`},
+		{comment: `//@tag: valid:"abc"`, tag: `valid:"abc"`},
+		{comment: `//   @tag: valid:"abcd"`, tag: `valid:"abcd"`},
+		{comment: `// @tag:      valid:"xyz"`, tag: `valid:"xyz"`},
 		{comment: `// fdsafsa`, tag: ""},
-		{comment: `//@inject_tag:`, tag: ""},
-		{comment: `// @inject_tag: json:"abc" yaml:"abc`, tag: `json:"abc" yaml:"abc`},
+		{comment: `//@tag:`, tag: ""},
+		{comment: `// @tag: json:"abc" yaml:"abc`, tag: `json:"abc" yaml:"abc`},
 	}
 	for _, test := range tests {
 		result := tagFromComment(test.comment)

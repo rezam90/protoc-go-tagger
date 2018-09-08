@@ -1,8 +1,8 @@
-# protoc-go-inject-tag
+# protoc-go-tagger
 
-[![Build Status](https://travis-ci.org/favadi/protoc-go-inject-tag.svg?branch=master)](https://travis-ci.org/favadi/protoc-go-inject-tag)
-[![Go Report Card](https://goreportcard.com/badge/github.com/favadi/protoc-go-inject-tag)](https://goreportcard.com/report/github.com/favadi/protoc-go-inject-tag)
-[![Coverage Status](https://coveralls.io/repos/github/favadi/protoc-go-inject-tag/badge.svg)](https://coveralls.io/github/favadi/protoc-go-inject-tag)
+[![Build Status](https://travis-ci.org/rezam90/protoc-go-tagger.svg?branch=master)](https://travis-ci.org/rezam90/protoc-go-tagger)
+[![Go Report Card](https://goreportcard.com/badge/github.com/rezam90/protoc-go-tagger)](https://goreportcard.com/report/github.com/rezam90/protoc-go-tagger)
+[![Coverage Status](https://coveralls.io/repos/github/rezam90/protoc-go-tagger/badge.svg)](https://coveralls.io/github/rezam90/protoc-go-tagger)
 
 ## Why?
 
@@ -22,12 +22,12 @@ things like validation struct tags.
   ```
 * go support for protobuf: `go get -u github.com/golang/protobuf/{proto,protoc-gen-go}`
 
-*  `go get github.com/favadi/protoc-go-inject-tag` or download the
+*  `go get github.com/rezam90/protoc-go-tagger` or download the
   binaries from releases page.
 
 ## Usage
 
-Add a comment with syntax `// @inject_tag: custom_tag:"custom_value"`
+Add a comment with syntax `// @tag: custom_tag:"custom_value"`
 before fields to add custom tag to in .proto files.
 
 Example:
@@ -39,7 +39,7 @@ syntax = "proto3";
 package pb;
 
 message IP {
-  // @inject_tag: valid:"ip"
+  // @tag: valid:"ip"
   string Address = 1;
 }
 ```
@@ -50,17 +50,17 @@ Generate with protoc command as normal.
 protoc --go_out=. test.proto
 ```
 
-Run `protoc-go-inject-tag` with generated file `test.pb.go`.
+Run `protoc-go-tagger` with generated file `test.pb.go`.
 
 ```
-protoc-go-inject-tag -input=./test.pb.go
+protoc-go-tagger -input=./test.pb.go
 ```
 
 The custom tags will be injected to `test.pb.go`.
 
 ```
 type IP struct {
-	// @inject_tag: valid:"ip"
+	// @tag: valid:"ip"
 	Address string `protobuf:"bytes,1,opt,name=Address,json=address" json:"Address,omitempty" valid:"ip"`
 }
 ```

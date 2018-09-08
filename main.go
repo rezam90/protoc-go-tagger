@@ -10,7 +10,7 @@ func main() {
 	var inputFile string
 	var xxxTags string
 	flag.StringVar(&inputFile, "input", "", "path to input file")
-	flag.StringVar(&xxxTags, "XXX_skip", "", "skip tags to inject on XXX fields")
+	flag.StringVar(&xxxTags, "skip_xxx", "", "skip tags to inject on XXX fields")
 
 	flag.Parse()
 
