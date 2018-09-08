@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"path/filepath"
 	"strings"
 )
 
@@ -23,11 +24,18 @@ func main() {
 		log.Fatal("input file is mandatory")
 	}
 
-	areas, err := parseFile(inputFile, xxxSkipSlice)
+	matches, err := filepath.Glob(inputFile)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("can't read files", err.Error())
 	}
-	if err = writeFile(inputFile, areas); err != nil {
-		log.Fatal(err)
+
+	for _, filePath := range matches {
+		areas, err := parseFile(filePath, xxxSkipSlice)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if err = writeFile(filePath, areas); err != nil {
+			log.Fatal(err)
+		}
 	}
 }
